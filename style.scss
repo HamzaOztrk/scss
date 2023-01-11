@@ -1,0 +1,163 @@
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+$bgcolor:pink;
+$fontfamily:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$fontsize:1.2rem;
+$navbgcolor:#30a7c3;
+$bannerbgcolor:hotpink;
+$myborder:2px solid brown;
+$fontcolor:white;
+$buttoncolor:rgb(210, 148, 148);
+
+body{
+    background-color: $bgcolor;
+    font-family:$fontfamily;
+    font-size: $fontsize;
+    color: $fontcolor;
+} 
+
+header{
+    background-color:$navbgcolor;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    
+
+    img{
+        width: 80px;
+        border: $myborder;
+        border-radius: 10px;
+    }
+
+    ul{
+        list-style-type: none;
+        
+        li{
+            display: inline-block;
+            padding: 0.5rem;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+        
+    }
+
+    a{
+        color: $fontcolor;
+        text-decoration: none;
+    }
+}
+
+.banner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $bannerbgcolor;
+    padding: 1rem;
+    line-height: 2rem;
+
+    aside{
+        button{
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            background-color:$buttoncolor;
+            margin-right: 0.5rem;
+            &:hover{
+                background-color: pink;
+                cursor: pointer;
+            }
+        }
+    }
+
+    img{
+        width: 40%;
+        min-width: 250px;
+        max-width:400px;
+    }
+}
+
+@mixin mybox($backcolor, $color) {
+    background-color:$backcolor ;
+    color: $color;
+    width: 25%;
+    height: 15rem;
+    border: $myborder;
+    border-radius: 5px;  
+}
+
+.cards{
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.8rem;
+    .card1{
+        @include mybox(red, yellow)
+    }
+    .card2{
+        @include mybox(blue, yellow)
+    }
+    .card3{
+        @include mybox(green, yellow)
+    }
+    .card4{
+        @include mybox(magenta, yellow)
+    }
+}
+
+.articles{
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    .article1{
+        background-color: grey;
+        width: 50%;
+        height: 10rem;
+        border-radius: 10px;
+        border: 1px solid black;
+    }
+
+    .article2{
+        @extend .article1;
+    }
+}
+
+footer{
+    $dark:1;
+
+
+    p{
+                    
+         @if  $dark==1 {
+            background-color: gray;
+
+        } @else if $dark==2 {
+            background-color: lightgray;
+
+        } @else {
+            background-color: orange;
+        }
+    }
+
+    .social-icons{
+        display: flex;
+        height: 10rem;
+        $textcolor:#990000, #55004e, #0fa8a1, #121456, #64c217;
+
+        @for $i from 1 through 5 {
+            .social#{$i} {
+                width: 20%;
+                background-color: lighten( blue, $i*5 );
+                font-size: $i*1rem;
+                color:nth($textcolor, $i )
+                
+            }
+        }
+
+    }
+}
